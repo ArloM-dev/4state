@@ -33,20 +33,27 @@ public class Main : MonoBehaviour
         for (int cycle = 0; cycle < 4; cycle++)
         {
             //creating the custom quality grid
-            bool[] qgrid = new bool[16];
+            bool[] sgrid = new bool[16];
             for (int i = 0; i < 16; i++)
             {
                 if ((grid[i] & (int)Math.Pow(2 , cycle)) == Math.Pow(2 , cycle))
                 {
-                    qgrid[i] = true;
+                    sgrid[i] = true;
                 }
-                else {qgrid[i] = false;}
+                else {sgrid[i] = false;}
             }
-
-            //horizontal win check
-            for (int rowv = 0; rowv < 16; rowv+=4)
+            //row win check
+            for (int row = 0; row < 4; row+=4)
             {
-                if (qgrid[rowv] && qgrid[rowv+1] && qgrid[rowv+2] && qgrid[rowv+3])
+                if (sgrid[row] && sgrid[row+1] && sgrid[row+2] && sgrid[row+3])
+                {
+                    return true;
+                }
+            }
+            //column win check
+            for (int column = 0; column < 4; column++)
+            {
+                if (sgrid[column] && sgrid[column+4] && sgrid[column+8] && sgrid[column+12])
                 {
                     return true;
                 }
