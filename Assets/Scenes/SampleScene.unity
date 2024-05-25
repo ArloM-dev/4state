@@ -564,22 +564,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b94499b8491f37479c6be8c521b0edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piece0: {fileID: 564943361}
-  piece1: {fileID: 174135128}
-  piece2: {fileID: 635147903}
-  piece3: {fileID: 1056719469}
-  piece4: {fileID: 289683121}
-  piece5: {fileID: 546431132}
-  piece6: {fileID: 809856818}
-  piece7: {fileID: 1365235973}
-  piece8: {fileID: 378859033}
-  piece9: {fileID: 1827640683}
-  piece10: {fileID: 1770065739}
-  piece11: {fileID: 2064093543}
-  piece12: {fileID: 322774920}
-  piece13: {fileID: 1695288572}
-  piece14: {fileID: 1148898761}
-  piece15: {fileID: 1155892990}
+  piece0: {fileID: 0}
+  piece1: {fileID: 0}
+  piece2: {fileID: 0}
+  piece3: {fileID: 0}
+  piece4: {fileID: 0}
+  piece5: {fileID: 0}
+  piece6: {fileID: 0}
+  piece7: {fileID: 0}
+  piece8: {fileID: 0}
+  piece9: {fileID: 0}
+  piece10: {fileID: 0}
+  piece11: {fileID: 0}
+  piece12: {fileID: 0}
+  piece13: {fileID: 0}
+  piece14: {fileID: 0}
+  piece15: {fileID: 0}
 --- !u!1 &546431132
 GameObject:
   m_ObjectHideFlags: 0
