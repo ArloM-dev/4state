@@ -58,6 +58,16 @@ public class Main : MonoBehaviour
                     return true;
                 }
             }
+            //top to bottom diagonal win check
+            if (sgrid[0] && sgrid[5] && sgrid[10] && sgrid[15])
+            {
+                return true;
+            }
+            //bottom to top diagonal win check
+            if (sgrid[3] && sgrid[6] && sgrid[9] && sgrid[12])
+            {
+                return true;
+            }
         }
         return false;
     }
