@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 
 public class Board : MonoBehaviour
 {
+    public Material material;
 
     // declairing all game pieces
     public GameObject piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15;
@@ -15,6 +16,7 @@ public class Board : MonoBehaviour
     void Start()
     {
         int[] grid = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+        BuildGrid();
         DisplayGrid(grid);
     }
 
@@ -22,6 +24,43 @@ public class Board : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void BuildGrid()
+    {
+        //creating the grid square mesh
+        Vector3[] vertices = new Vector3[4];
+        Vector2[] UV = new Vector2[4];
+        int[] triangles = new int[6];
+
+        vertices[0] = new Vector3(0,0);
+        vertices[1] = new Vector3(0,1);
+        vertices[2] = new Vector3(1,0);
+        vertices[3] = new Vector3(1,1);
+
+        UV[0] = new Vector2(0,0);
+        UV[1] = new Vector2(0,1);
+        UV[2] = new Vector2(1,0);
+        UV[3] = new Vector2(1,1);
+
+        triangles[0] = 0;
+        triangles[1] = 1;
+        triangles[2] = 2;
+        triangles[3] = 2;
+        triangles[4] = 1;
+        triangles[5] = 3;
+
+        Mesh gridmesh = new Mesh
+        {
+            vertices = vertices,
+            uv = UV,
+            triangles = triangles
+        };
+
+        GameObject test = new GameObject("gridsquare", typeof(MeshFilter), typeof(MeshRenderer));
+        test.GetComponent<MeshFilter>().mesh = gridmesh;
+        test.GetComponent<MeshRenderer>().material = material;
+        test.transform.position = new Vector3(0,0,-1);
     }
 
     public bool WinDetect(int[] grid)
