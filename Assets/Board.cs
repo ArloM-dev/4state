@@ -7,8 +7,9 @@ using UnityEngine.Rendering;
 
 public class Board : MonoBehaviour
 {
+    public int gridsize = 2;
     public Material material;
-
+    
     // declairing all game pieces
     public GameObject piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15;
 
@@ -34,14 +35,14 @@ public class Board : MonoBehaviour
         int[] triangles = new int[6];
 
         vertices[0] = new Vector3(0,0);
-        vertices[1] = new Vector3(0,1);
-        vertices[2] = new Vector3(1,0);
-        vertices[3] = new Vector3(1,1);
+        vertices[1] = new Vector3(0,2);
+        vertices[2] = new Vector3(2,0);
+        vertices[3] = new Vector3(2,2);
 
         UV[0] = new Vector2(0,0);
-        UV[1] = new Vector2(0,1);
-        UV[2] = new Vector2(1,0);
-        UV[3] = new Vector2(1,1);
+        UV[1] = new Vector2(0,2);
+        UV[2] = new Vector2(2,0);
+        UV[3] = new Vector2(2,2);
 
         triangles[0] = 0;
         triangles[1] = 1;
@@ -57,10 +58,16 @@ public class Board : MonoBehaviour
             triangles = triangles
         };
 
-        GameObject test = new GameObject("gridsquare", typeof(MeshFilter), typeof(MeshRenderer));
-        test.GetComponent<MeshFilter>().mesh = gridmesh;
-        test.GetComponent<MeshRenderer>().material = material;
-        test.transform.position = new Vector3(0,0,-1);
+        GameObject[] gridsquares = new GameObject[16];
+        for (int gridnum = 0; gridnum < 16; gridnum++)
+        {
+            gridsquares[gridnum] = new GameObject("gridsquare"+gridnum, typeof(MeshFilter), typeof(MeshRenderer));
+            gridsquares[gridnum].GetComponent<MeshFilter>().mesh = gridmesh;
+            gridsquares[gridnum].GetComponent<MeshRenderer>().material = material;
+            float x = (float)(2 * (gridnum % 4 - 2));
+            float y = (float)(2 * (1 - ((gridnum - gridnum % 4) / 4)));
+            gridsquares[gridnum].transform.position = new Vector3(x,y,-1);
+        }
     }
 
     public bool WinDetect(int[] grid)
@@ -110,7 +117,7 @@ public class Board : MonoBehaviour
     public void DisplayGrid(int[] grid)
     {
         GameObject[] piece = {piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15};
-        int gridsize = 2;
+        
         //sets pieces to grid
         for (int pos = 0; pos < 16; pos++)
         {
