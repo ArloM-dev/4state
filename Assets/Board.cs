@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class Board : MonoBehaviour
 {
@@ -61,12 +62,15 @@ public class Board : MonoBehaviour
         GameObject[] gridsquares = new GameObject[16];
         for (int gridnum = 0; gridnum < 16; gridnum++)
         {
-            gridsquares[gridnum] = new GameObject("gridsquare"+gridnum, typeof(MeshFilter), typeof(MeshRenderer));
-            gridsquares[gridnum].GetComponent<MeshFilter>().mesh = gridmesh;
-            gridsquares[gridnum].GetComponent<MeshRenderer>().material = material;
+            GameObject currentsquare = gridsquares[gridnum];
+            currentsquare = new GameObject("gridsquare"+gridnum, typeof(MeshFilter), typeof(MeshRenderer), typeof(BoxCollider2D), typeof(gridsquare));
+            currentsquare.GetComponent<BoxCollider2D>().offset = new Vector2(1,1);
+            currentsquare.GetComponent<BoxCollider2D>().size = new Vector2(2,2);
+            currentsquare.GetComponent<MeshFilter>().mesh = gridmesh;
+            currentsquare.GetComponent<MeshRenderer>().material = material;
             float x = (float)(2 * (gridnum % 4 - 2));
             float y = (float)(2 * (1 - ((gridnum - gridnum % 4) / 4)));
-            gridsquares[gridnum].transform.position = new Vector3(x,y,-1);
+            currentsquare.transform.position = new Vector3(x,y);
         }
     }
 
@@ -126,7 +130,7 @@ public class Board : MonoBehaviour
                 float x = (float)(gridsize * (pos % 4 - 1.5));
                 float y = (float)(gridsize * (1.5 - ((pos - pos % 4) / 4)));
                 piece[grid[pos]].SetActive(true);
-                piece[grid[pos]].transform.position = new Vector3(x, y);
+                piece[grid[pos]].transform.position = new Vector3(x, y, -1);
             }
             //finds unused pieces and hides them
             for (int i = 0; i < 16; i++)
