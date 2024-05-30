@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 
 public class Board : MonoBehaviour
 {
+
+    public int[] grid = {0, 16, 2, 3, 4, 5, 16, 7, 8, 9, 10, 11, 12, 13, 14, 15};
     public int gridsize = 2;
     public Material material;
     
@@ -17,7 +19,6 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int[] grid = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
         BuildGrid();
         DisplayGrid(grid);
     }
@@ -63,7 +64,7 @@ public class Board : MonoBehaviour
         for (int gridnum = 0; gridnum < 16; gridnum++)
         {
             GameObject currentsquare = gridsquares[gridnum];
-            currentsquare = new GameObject("gridsquare"+gridnum, typeof(MeshFilter), typeof(MeshRenderer), typeof(BoxCollider2D), typeof(gridsquare));
+            currentsquare = new GameObject(gridnum.ToString(), typeof(MeshFilter), typeof(MeshRenderer), typeof(BoxCollider2D), typeof(gridsquare));
             currentsquare.GetComponent<BoxCollider2D>().offset = new Vector2(1,1);
             currentsquare.GetComponent<BoxCollider2D>().size = new Vector2(2,2);
             currentsquare.GetComponent<MeshFilter>().mesh = gridmesh;
