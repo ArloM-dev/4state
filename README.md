@@ -9,3 +9,8 @@ In the original game, these were:
 - Square | Circle
 - Flat | Hollowed
 
+Each piece would consist of these four things or there counterpart,
+creating 16 distinct pieces. For example, you could have a Tall, Black,
+Square, Hollowed piece or a Short, Black, Circle, Flat piece. Basic maths shows
+us that there are two possibilitys for each quality, which is 2x2x2x2 or 2^4,
+which is 16 diferent pieces.
