@@ -8,20 +8,18 @@ using UnityEngine.UIElements;
 
 public class Board : MonoBehaviour
 {
-
     public int[] grid = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
     public int gridsize = 2;
     public Material material;
-    
     // declairing all game pieces
-    public Sprite piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7;
+    public Sprite piece0s, piece1s, piece2s, piece3s, piece4s, piece5s, piece6s, piece7s;
 
     // Start is called before the first frame update
     public void Start()
     {
-        GameObject[] pieces = Createpieces();
+        GameObject[] grid = Createpieces();
         BuildGrid();
-        DisplayGrid(pieces);
+        DisplayGrid(grid);
     }
 
     // Update is called once per frame
@@ -152,15 +150,16 @@ public class Board : MonoBehaviour
         }
     }
 
-    public GameObject[] Createpieces()
+    GameObject[] Createpieces()
     {
-        Sprite[] piecesprite = {piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7};
+        Sprite[] piecesprite = {piece0s, piece1s, piece2s, piece3s, piece4s, piece5s, piece6s, piece7s};
         GameObject[] pieces = new GameObject[16];
         for (int piece = 0; piece < 16; piece++)
         {
             pieces[piece] = new GameObject("piece" + piece.ToString(), typeof(SpriteRenderer), typeof(pieces), typeof(BoxCollider2D));
             pieces[piece].GetComponent<BoxCollider2D>().size = new Vector2(5,5);
             pieces[piece].GetComponent<SpriteRenderer>().sprite = piecesprite[piece%8];
+            pieces[piece].GetComponent<pieces>().scriptholder = gameObject;
             if (piece < 8)
             {
                 pieces[piece].GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f);
@@ -171,6 +170,14 @@ public class Board : MonoBehaviour
             }
         }
         return pieces;
+    }
+
+    public void adaptgrid(GameObject piecemoved, int gridnum)
+    {
+        //GameObject[] pieces = {piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15};
+        float x = (float)(gridsize * (gridnum % 4 - 1.5));
+        float y = (float)(gridsize * (1.5 - ((gridnum - gridnum % 4) / 4)));
+        piecemoved.transform.position = new Vector3(x, y, -1);
     }
 
 }
