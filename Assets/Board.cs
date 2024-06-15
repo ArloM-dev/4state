@@ -9,19 +9,19 @@ using UnityEngine.UIElements;
 public class Board : MonoBehaviour
 {
 
-    public int[] grid = {0, 16, 2, 3, 4, 5, 16, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    public int[] grid = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
     public int gridsize = 2;
     public Material material;
     
     // declairing all game pieces
-    public Sprite piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15;
+    public Sprite piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        Createpieces();
+        GameObject[] pieces = Createpieces();
         BuildGrid();
-        DisplayGrid(grid);
+        DisplayGrid(pieces);
     }
 
     // Update is called once per frame
@@ -120,9 +120,8 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    public void DisplayGrid(int[] grid)
+    public void DisplayGrid(GameObject[] pieces)
     {
-        GameObject[] pieces = Createpieces().pieces;
         //sets pieces to grid
         for (int pos = 0; pos < 16; pos++)
         {
@@ -153,16 +152,17 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void Createpieces()
+    public GameObject[] Createpieces()
     {
-        Sprite[] piecesprite = {piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15};
+        Sprite[] piecesprite = {piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7};
         GameObject[] pieces = new GameObject[16];
         for (int piece = 0; piece < 16; piece++)
         {
-            GameObject currentpiece = pieces[piece];
-            currentpiece = new GameObject("piece" + piece.ToString(), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(pieces));
-            currentpiece.GetComponent<SpriteRenderer>().sprite = piecesprite[piece];
+            pieces[piece] = new GameObject("piece" + piece.ToString(), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(pieces));
+            pieces[piece].GetComponent<SpriteRenderer>().sprite = piecesprite[piece%8];
+            pieces[piece].GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f);
         }
+        return pieces;
     }
 
 }
