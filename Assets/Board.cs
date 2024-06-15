@@ -158,9 +158,17 @@ public class Board : MonoBehaviour
         GameObject[] pieces = new GameObject[16];
         for (int piece = 0; piece < 16; piece++)
         {
-            pieces[piece] = new GameObject("piece" + piece.ToString(), typeof(SpriteRenderer), typeof(BoxCollider2D), typeof(pieces));
+            pieces[piece] = new GameObject("piece" + piece.ToString(), typeof(SpriteRenderer), typeof(pieces), typeof(BoxCollider2D));
+            pieces[piece].GetComponent<BoxCollider2D>().size = new Vector2(5,5);
             pieces[piece].GetComponent<SpriteRenderer>().sprite = piecesprite[piece%8];
-            pieces[piece].GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f);
+            if (piece < 8)
+            {
+                pieces[piece].GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f);
+            }
+            else
+            {
+                pieces[piece].GetComponent<Transform>().localScale = new Vector3(0.25f, 0.25f);
+            }
         }
         return pieces;
     }
