@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 
 public class Board : MonoBehaviour
 {
+    public GameObject[] pgridsquares = new GameObject[16];
+    public GameObject[] pieces = new GameObject[16];
     public int[] grid = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
     public int gridsize = 2;
     public Material material;
@@ -17,9 +19,9 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        GameObject[] grid = Createpieces();
-        BuildGrid();
-        DisplayGrid(grid);
+        pgridsquares = BuildGrid();
+        pieces = Createpieces();
+        DisplayGrid(pieces);
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class Board : MonoBehaviour
         
     }
 
-    public void BuildGrid()
+    public GameObject[] BuildGrid()
     {
         //creating the grid square mesh
         Vector3[] vertices = new Vector3[4];
@@ -62,16 +64,16 @@ public class Board : MonoBehaviour
         GameObject[] gridsquares = new GameObject[16];
         for (int gridnum = 0; gridnum < 16; gridnum++)
         {
-            GameObject currentsquare = gridsquares[gridnum];
-            currentsquare = new GameObject(gridnum.ToString(), typeof(MeshFilter), typeof(MeshRenderer), typeof(BoxCollider2D), typeof(gridsquare));
-            currentsquare.GetComponent<BoxCollider2D>().offset = new Vector2(1,1);
-            currentsquare.GetComponent<BoxCollider2D>().size = new Vector2(2,2);
-            currentsquare.GetComponent<MeshFilter>().mesh = gridmesh;
-            currentsquare.GetComponent<MeshRenderer>().material = material;
+            gridsquares[gridnum] = new GameObject(gridnum.ToString(), typeof(MeshFilter), typeof(MeshRenderer), typeof(BoxCollider2D), typeof(gridsquare));
+            gridsquares[gridnum].GetComponent<BoxCollider2D>().offset = new Vector2(1,1);
+            gridsquares[gridnum].GetComponent<BoxCollider2D>().size = new Vector2(2,2);
+            gridsquares[gridnum].GetComponent<MeshFilter>().mesh = gridmesh;
+            gridsquares[gridnum].GetComponent<MeshRenderer>().material = material;
             float x = (float)(2 * (gridnum % 4 - 2));
             float y = (float)(2 * (1 - ((gridnum - gridnum % 4) / 4)));
-            currentsquare.transform.position = new Vector3(x,y);
+            gridsquares[gridnum].transform.position = new Vector3(x,y);
         }
+        return gridsquares;
     }
 
     public bool WinDetect(int[] grid)
@@ -174,10 +176,27 @@ public class Board : MonoBehaviour
 
     public void adaptgrid(GameObject piecemoved, int gridnum)
     {
-        //GameObject[] pieces = {piece0, piece1, piece2, piece3, piece4, piece5, piece6, piece7, piece8, piece9, piece10, piece11, piece12, piece13, piece14, piece15};
+        int origanalpos = Pieceplacefinder(piecemoved);
+        pgridsquares[origanalpos].GetComponent<gridsquare>().isactive = true;
+        pgridsquares[gridnum].GetComponent<gridsquare>().isactive = false;
+        grid[origanalpos] = 16;
         float x = (float)(gridsize * (gridnum % 4 - 1.5));
         float y = (float)(gridsize * (1.5 - ((gridnum - gridnum % 4) / 4)));
         piecemoved.transform.position = new Vector3(x, y, -1);
+
+    }
+
+    public int Pieceplacefinder(GameObject piece_to_find)
+    {
+        int piecenum = int.Parse(piece_to_find.name.Remove(0, 5));
+        for (int gridpos = 0; gridpos < 16; gridpos++)
+        {
+            if (grid[gridpos] == piecenum)
+            {
+                return gridpos;
+            }
+        }
+        return 16;
     }
 
 }

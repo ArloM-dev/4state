@@ -242,25 +242,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e11b91e15031647bad1b8705dc5f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: 000000001000000002000000030000000400000005000000100000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+  grid: 000000000100000010000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
   gridsize: 2
   material: {fileID: 2100000, guid: 1757dc63e05907044b3b1a88afd57964, type: 2}
-  piece0: {fileID: 0}
-  piece1: {fileID: 0}
-  piece2: {fileID: 0}
-  piece3: {fileID: 0}
-  piece4: {fileID: 0}
-  piece5: {fileID: 0}
-  piece6: {fileID: 0}
-  piece7: {fileID: 0}
-  piece8: {fileID: 0}
-  piece9: {fileID: 0}
-  piece10: {fileID: 0}
-  piece11: {fileID: 0}
-  piece12: {fileID: 0}
-  piece13: {fileID: 0}
-  piece14: {fileID: 0}
-  piece15: {fileID: 0}
+  piece0s: {fileID: 21300000, guid: 3433be13a81b3014c8b4aa355b65aeb1, type: 3}
+  piece1s: {fileID: 21300000, guid: e4b92a591d507ce45af8b97ee4de281d, type: 3}
+  piece2s: {fileID: 21300000, guid: b6c824066336b574bb52a599462bbf03, type: 3}
+  piece3s: {fileID: 21300000, guid: 60371afecfbca024d86e0ffd59355459, type: 3}
+  piece4s: {fileID: 21300000, guid: da9dbfa104605fb408130d286d5c9264, type: 3}
+  piece5s: {fileID: 21300000, guid: 7733cf3eba0cf754d88a5b5a6f4bbc9b, type: 3}
+  piece6s: {fileID: 21300000, guid: 839c43af000398a44ad5b59ddae632fd, type: 3}
+  piece7s: {fileID: 21300000, guid: 0007fa8f7a90cf74d9dfe69000330133, type: 3}
 --- !u!1 &1847839350
 GameObject:
   m_ObjectHideFlags: 0

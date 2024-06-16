@@ -8,18 +8,16 @@ using UnityEngine;
 
 public class gridsquare : MonoBehaviour
 {
-
     
-    
-    public  bool isactive = false;
+    public bool isactive = false;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject Mainscript = GameObject.FindWithTag("MainCamera");
         GetComponent<MeshRenderer>().enabled = false;
-        int[] grid =  Mainscript.GetComponent<Board>().grid;
-        if (grid[Int32.Parse(name)] == 16)
+        int[] grid = Mainscript.GetComponent<Board>().grid;
+        if (grid[int.Parse(name)] == 16)
         {
             isactive = true;
         }
@@ -28,7 +26,6 @@ public class gridsquare : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void OnMouseEnter()
@@ -50,8 +47,9 @@ public class gridsquare : MonoBehaviour
         GameObject selected =  Mainscript.GetComponent<Main>().selected_piece;
         if (isactive)
         {
-            var Board = Mainscript.GetComponent<Board>();
-            Board.adaptgrid(selected, Int32.Parse(name));
+            Mainscript.GetComponent<Board>().adaptgrid(selected, int.Parse(name));
+            Mainscript.GetComponent<Board>().grid[Int32.Parse(name)] = Int32.Parse((selected.name).Remove(0,5));
+            isactive = false;
         }
     }
 }
