@@ -45,11 +45,16 @@ public class gridsquare : MonoBehaviour
     {
         GameObject Mainscript = GameObject.FindWithTag("MainCamera");
         GameObject selected =  Mainscript.GetComponent<Main>().selected_piece;
-        if (isactive)
+        if (isactive && (selected != null))
         {
             Mainscript.GetComponent<Board>().adaptgrid(selected, int.Parse(name));
             Mainscript.GetComponent<Board>().grid[Int32.Parse(name)] = Int32.Parse((selected.name).Remove(0,5));
+            Mainscript.GetComponent<Main>().selected_piece = null;
             isactive = false;
+            if (Mainscript.GetComponent<Board>().WinDetect())
+            {
+                Debug.Log("win");
+            }
         }
     }
 }

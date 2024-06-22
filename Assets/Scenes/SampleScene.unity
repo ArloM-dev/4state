@@ -242,7 +242,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e11b91e15031647bad1b8705dc5f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: 000000000100000010000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+  pgridsquares:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  pieces:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  grid: 10000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000
   gridsize: 2
   material: {fileID: 2100000, guid: 1757dc63e05907044b3b1a88afd57964, type: 2}
   piece0s: {fileID: 21300000, guid: 3433be13a81b3014c8b4aa355b65aeb1, type: 3}
