@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Microsoft.Unity.VisualStudio.Editor;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -53,7 +54,8 @@ public class gridsquare : MonoBehaviour
             isactive = false;
             if (Mainscript.GetComponent<Board>().WinDetect())
             {
-                Debug.Log("win");
+                Gameover gameover = Mainscript.GetComponent<Board>().gameover;
+                gameover.GameOver(true);
             }
         }
     }

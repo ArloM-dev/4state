@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 
 public class Board : MonoBehaviour
 {
+    public Gameover gameover;
     public GameObject[] pgridsquares = new GameObject[16];
     public GameObject[] pieces = new GameObject[16];
     public int[] grid = new int[16];
@@ -164,7 +165,7 @@ public class Board : MonoBehaviour
         pgridsquares[gridnum].GetComponent<gridsquare>().isactive = false;
         float x = (float)(gridsize * (gridnum % 4 - 1.5));
         float y = (float)(gridsize * (1.5 - ((gridnum - gridnum % 4) / 4)));
-        piecemoved.transform.position = new Vector3(x, y, -1);
+        piecemoved.transform.position = new Vector3(x, y, -2);
         piecemoved.GetComponent<pieces>().ongrid = true;
         Debug.Log("piecemoved");
     }
@@ -184,7 +185,7 @@ public class Board : MonoBehaviour
                 x = (float)(2*(1.5 - ((i - i % 4) / 4))+10);
             }
             float y = (float)(2*(i % 4 - 1.5));
-            pieces[i].transform.position = new Vector3(x,y);
+            pieces[i].transform.position = new Vector3(x,y,-2);
         }
     }
 
